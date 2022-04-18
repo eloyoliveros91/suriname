@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+      <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"></script>
+    <title>Suriname Calculator</title>
+</head>
+<body>
+    <div class="container">
+    
+    <div style="padding-top: 50px;" class="row">
+        <form style="padding-bottom: 50px;"  class="col s12">
+            <input class="input-field" type="text" id="preciosr">
+            <label for="preciosr">Precio Suriname</label> 
+            <input class="input-field" type="text" id="Peso">
+            <label for="peso">Peso</label>
+            <input class="input-field" type="text" id="preciocuba">
+            <label for="preciocuba">Precio Cuba</label>
+            <br>
+            <br>    
+            <button class="btn waves-effect waves-light" type="submit" name="action">Calcular</button>
+        </form>
+        <br>
+        
+        <h4 id="resultado">Valor: </h4>
+      </div>
+    </div>
+            
+</body>
+
+<script>
+    $('button').click(function (e) { 
+        e.preventDefault();
+        console.log('Calculo');
+        
+        precioSr = parseFloat($('#preciosr').val());
+        peso = parseFloat($('#Peso').val());
+        precioCuba = parseFloat($('#preciocuba').val());
+        valorUSD = 115;
+        valor = (precioCuba/valorUSD - precioSr)/peso;
+        valor = valor.toFixed(2);
+        console.log(precioSr);
+        console.log(peso);
+        console.log(precioCuba);
+        $('#resultado').text("Valor: " + valor);
+        
+    });
+
+</script>
+</html>
