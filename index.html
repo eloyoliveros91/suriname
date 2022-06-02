@@ -17,12 +17,12 @@
 </head>
 <body>
     <div class="container">
-    
+<!--     
     <div style="padding-top: 50px;" class="row">
         <form style="padding-bottom: 50px;"  class="col s12">
             <input class="input-field" type="text" id="preciosr">
             <label for="preciosr">Precio Suriname</label> 
-            <input class="input-field" type="text" id="Peso">
+                <input class="input-field" type="text" id="Peso">
             <label for="peso">Peso</label>
             <input class="input-field" type="text" id="preciocuba">
             <label for="preciocuba">Precio Cuba</label>
@@ -34,27 +34,64 @@
         
         <h4 id="resultado">Valor: </h4>
       </div>
+    </div> -->
+
+
+    <div style="padding-top: 50px;" class="row">
+        <form style="padding-bottom: 50px;"  class="col s12">
+            <select id="product-dropdown" name="products" style="display: block;">
+            </select>
+            <p id="test2">Valores</p>
+            <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Calcular</button> -->
+        </form>
+        <br>
+<!--         
+        <h4 id="resultado">Valor: </h4> -->
+      </div>
     </div>
             
 </body>
 
 <script>
-    $('button').click(function (e) { 
-        e.preventDefault();
-        console.log('Calculo');
+    // $('button').click(function (e) { 
+    //     e.preventDefault();
+    //     console.log('Calculo');
         
-        precioSr = parseFloat($('#preciosr').val());
-        peso = parseFloat($('#Peso').val());
-        precioCuba = parseFloat($('#preciocuba').val());
-        valorUSD = 115;
-        valor = (precioCuba/valorUSD - precioSr)/peso;
-        valor = valor.toFixed(2);
-        console.log(precioSr);
-        console.log(peso);
-        console.log(precioCuba);
-        $('#resultado').text("Valor: " + valor);
+    //     precioSr = parseFloat($('#preciosr').val());
+    //     peso = parseFloat($('#Peso').val());
+    //     precioCuba = parseFloat($('#preciocuba').val());
+    //     valorUSD = 115;
+    //     valor = (precioCuba/valorUSD - precioSr)/peso;
+    //     valor = valor.toFixed(2);
+    //     console.log(precioSr);
+    //     console.log(peso);
+    //     console.log(precioCuba);
+    //     $('#resultado').text("Valor: " + valor);
         
+    // });
+
+    let dropdown = $('#product-dropdown');
+
+    dropdown.empty();
+
+    // dropdown.prop('selectedIndex', 0);
+
+    const url = './products.json';
+    // var obj = jQuery.parseJSON( url );
+    // Populate dropdown with list of provinces
+    $.getJSON(url, function (data) {
+        // var obj = jQuery.parseJSON( data );
+    $.each(data, function (key, entry) {
+        dropdown.append($('<option></option>').attr('value', entry.Texto).text(key));
+        // console.log(key);
+
+    })
     });
+
+    dropdown.change(function() {
+    // console.log(this.value);
+    $("#test2").html(this.value);
+});
 
 </script>
 </html>
