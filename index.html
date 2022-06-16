@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <!-- Compiled and minified CSS -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-      <!-- Compiled and minified JavaScript -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-      <script
-      src="https://code.jquery.com/jquery-3.6.0.min.js"
-      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-      crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <title>Suriname Calculator</title>
 </head>
+
 <body>
     <div class="container">
-<!--     
+        <!--     
     <div style="padding-top: 50px;" class="row">
         <form style="padding-bottom: 50px;"  class="col s12">
             <input class="input-field" type="text" id="preciosr">
@@ -37,26 +37,41 @@
     </div> -->
 
 
+        <div style="padding-top: 50px;" class="row">
+            <form style="padding-bottom: 50px;" class="col s12">
+                <select id="product-dropdown" name="products" style="display: block;">
+                </select>
+                <h2 id="test2">Valores</p>
+                    <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Calcular</button> -->
+            </form>
+            <br>
+            <!--         
+        <h4 id="resultado">Valor: </h4> -->
+        </div>
+    
+
+
     <div style="padding-top: 50px;" class="row">
-        <form style="padding-bottom: 50px;"  class="col s12">
-            <select id="product-dropdown" name="products" style="display: block;">
+        <form style="padding-bottom: 50px;" class="col s12">
+            <select id="vendedoras-dropdown" name="vendedoras" style="display: block;">
             </select>
-            <h2 id="test2">Valores</p>
-            <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Calcular</button> -->
+            <h4 id="vendedorasValores">Valores</h4>
+                <!-- <button class="btn waves-effect waves-light" type="submit" name="action">Calcular</button> -->
         </form>
         <br>
-<!--         
+        <!--         
         <h4 id="resultado">Valor: </h4> -->
-      </div>
     </div>
-            
+    </div>
+
+
 </body>
 
 <script>
     // $('button').click(function (e) { 
     //     e.preventDefault();
     //     console.log('Calculo');
-        
+
     //     precioSr = parseFloat($('#preciosr').val());
     //     peso = parseFloat($('#Peso').val());
     //     precioCuba = parseFloat($('#preciocuba').val());
@@ -67,7 +82,7 @@
     //     console.log(peso);
     //     console.log(precioCuba);
     //     $('#resultado').text("Valor: " + valor);
-        
+
     // });
 
     let dropdown = $('#product-dropdown');
@@ -81,17 +96,42 @@
     // Populate dropdown with list of provinces
     $.getJSON(url, function (data) {
         // var obj = jQuery.parseJSON( data );
-    $.each(data, function (key, entry) {
-        dropdown.append($('<option></option>').attr('value', entry.Texto).text(key));
-        // console.log(key);
+        $.each(data, function (key, entry) {
+            dropdown.append($('<option></option>').attr('value', entry.Texto).text(key));
+            // console.log(key);
 
-    })
+        })
     });
 
-    dropdown.change(function() {
-    // console.log(this.value);
-    $("#test2").html(this.value);
-});
+    dropdown.change(function () {
+        // console.log(this.value);
+        $("#test2").html(this.value);
+
+
+    });
+
+    let dropdownVend = $('#vendedoras-dropdown');
+
+    dropdownVend.empty();
+
+
+    const url2 = './vendedoras.json';
+    // var obj = jQuery.parseJSON( url );
+    // Populate dropdown with list of provinces
+    $.getJSON(url2, function (data) {
+        // var obj = jQuery.parseJSON( data );
+        $.each(data, function (key, entry) {
+            dropdownVend.append($('<option></option>').attr('value', entry.texto).text(key));
+        })
+    });
+
+    dropdownVend.change(function () {
+        // console.log(this.value);
+        $("#vendedorasValores").html(this.value);
+
+    });
+
 
 </script>
+
 </html>
